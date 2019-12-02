@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>BACKGROUND GERAK INFINITE</title>
+		<style>
+			#canvas{
+				border: 1px solid;
+				width:800px;
+				height:600px;
+			}
+	</style>
+
+</head>
+<body>
+	<canvas id="canvas"></canvas>
+
+	<script>
+
+		var bg=new Image();
+		bg.src="bg.jpg";
+
+		var canvas=document.getElementById("canvas");
+		var ctx=canvas.getContext('2d');
+		canvas.width=canvas.scrollWidth;
+		canvas.height=canvas.scrollHeight;
+
+		var cW=canvas.width;
+		var cH=canvas.height;
+
+		function Mulai(){
+
+			function back(){
+				this.x=0;
+				this.render=function(){
+					ctx.drawImage(bg,this.x--,0);
+
+					if(this.x==-1599){
+							this.x=0;
+					}
+				}
+			}
+				var latar=new back();
+
+				function animasi(){
+					ctx.save();
+					ctx.clearRect(0,0,cW,cH);
+
+					latar.render();
+
+					ctx.restore();
+				}
+
+				setInterval(animasi,30);
+		}
+
+		window.addEventListener('load', function(event){
+			Mulai();
+		})
+	
+	</script>
+</body>
+</html>
